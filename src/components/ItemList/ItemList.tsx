@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchItems, selectItem } from "../store/itemSlice";
-import { AppDispatch, RootState } from "../store/store";
-import { ItemDetail } from "./ItemDetail";
+import { fetchItems, selectItem } from "../../store/itemSlice";
+import { AppDispatch, RootState } from "../../store/store";
+import { ItemDetail } from "../ItemDetail/ItemDetail";
 
 const Container = styled.div`
     display: flex;

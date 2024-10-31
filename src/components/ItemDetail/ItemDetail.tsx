@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { PropertyContent } from "./PropertyContent";
+import { PropertyContent } from "../PropertyContent/PropertyContent";
 import { useState } from "react";
-import { ImageContent } from "./ImageContent";
+import { ImageContent } from "../ImageContent/ImageContent";
 
 const Container = styled.div`
     overflow: hidden;
@@ -36,12 +36,12 @@ const Tab = styled.div<TabProps>`
     font-size: 16px;
     font-weight: 700;
     border-bottom: 1px solid rgba(0,0,0,1);
-    background-color: ${props => props.isActive ? 'rgba(50, 168, 133, .5)' : 'transparent'};
+    background-color: ${props => props.isactive ? 'rgba(50, 168, 133, .5)' : 'transparent'};
     cursor: pointer;
 `;
 
 type TabProps = {
-    isActive: boolean;
+    isactive: boolean;
 }
 
 export const ItemDetail = () => {
@@ -50,8 +50,8 @@ export const ItemDetail = () => {
     return (
         <Container>
             <DetailHead>
-                <Tab isActive={activeTab === 'Properties'} onClick={() => setActiveTab('Properties')}>Properties</Tab>
-                <Tab isActive={activeTab === 'Image'} onClick={() => setActiveTab('Image')}>Image</Tab>
+                <Tab data-testid="data-properties" isactive={activeTab === 'Properties'} onClick={() => setActiveTab('Properties')}>Properties</Tab>
+                <Tab data-testid="data-image" isactive={activeTab === 'Image'} onClick={() => setActiveTab('Image')}>Image</Tab>
             </DetailHead>
             <div>
                 {
@@ -60,5 +60,4 @@ export const ItemDetail = () => {
             </div>
         </Container>
     )
-
 }

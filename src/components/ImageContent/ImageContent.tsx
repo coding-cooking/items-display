@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { RootState } from "../store/store";
+import { RootState } from "../../store/store";
 import { useSelector } from "react-redux";
 
 const Image = styled.img`
@@ -13,6 +13,7 @@ export const ImageContent = () => {
         <>
             {selectedItem &&
                 <Image
+                    role="img"
                     src={`http://localhost:8080/image/${selectedItem.guid}`}
                 />
             }

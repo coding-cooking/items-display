@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { useSelector } from "react-redux"
-import { RootState } from "../store/store"
+import { RootState } from "../../store/store"
 
 const Container = styled.div`
     display: flex;
@@ -24,7 +24,7 @@ export const PropertyContent = () => {
     const { selectedItem } = useSelector((state: RootState) => state.items);
 
     return (
-        <Container>
+        <Container test-id="data-properties">
             {selectedItem && (Object.entries(selectedItem.properties).map(([key, value]) => (
                 <RowContainer key={`${key}-${value}`}>
                     <span>{key}</span>
