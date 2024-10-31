@@ -1,12 +1,15 @@
-import styled from "styled-components"
-import { PropertyContent } from "./PropertyContent"
-import { useState } from "react"
-import { ImageContent } from "./ImageContent"
+import styled from "styled-components";
+import { PropertyContent } from "./PropertyContent";
+import { useState } from "react";
+import { ImageContent } from "./ImageContent";
 
 const Container = styled.div`
+    overflow: hidden;
     border: 1px solid rgba(0,0,0,1);
     border-radius: 6px;
     width: 100%;
+    height: 235px;
+   
 
     @media screen and (min-width: 768px) {
         flex-direction: row;

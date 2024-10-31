@@ -1,4 +1,8 @@
+import { useEffect } from "react";
 import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchItems, selectItem } from "../store/itemSlice";
+import { AppDispatch, RootState } from "../store/store";
 import { ItemDetail } from "./ItemDetail";
 
 const Container = styled.div`
@@ -58,6 +62,30 @@ export type Item = {
 }
 
 export const ItemList = () => {
+    const dispatch = useDispatch<AppDispatch>();
+    const {
+        items,
+        selectedItem,
+        status,
+        error
+    } = useSelector((state: RootState) => state.items);
+
+    useEffect(() => {
+        dispatch(fetchItems());
+    }, [dispatch]);
+
+    const handleItemClick = (item: Item) => {
+        dispatch(selectItem(item));
+    };
+
+    if (status === 'loading') {
+        return <div>Loading...</div>;
+    }
+
+    if (status === 'failed') {
+        return <div>Error: {error}</div>;
+    }
+
     return (
         <Container>
             <TableWrapper>
@@ -67,18 +95,21 @@ export const ItemList = () => {
                         <StyledTh>Name</StyledTh>
                         <StyledTh>Path</StyledTh>
                     </tr>
-                    <ItemContainer
-                        selected={true}
-                    >
-                        <StyledTd>1</StyledTd>
-                        <StyledTd>2</StyledTd>
-                        <StyledTd>3</StyledTd>
-                    </ItemContainer>
+                    {items?.map(item => (
+                        <ItemContainer
+                            key={item.guid}
+                            onClick={() => handleItemClick(item)}
+                            selected={selectedItem?.guid === item.guid}
+                        >
+                            <StyledTd>{item.guid}</StyledTd>
+                            <StyledTd>{item.name}</StyledTd>
+                            <StyledTd>{item.path.join('/')}</StyledTd>
+                        </ItemContainer>
+                    ))}
 
                 </table>
             </TableWrapper>
             <ItemDetail />
         </Container>
     )
-
 }
